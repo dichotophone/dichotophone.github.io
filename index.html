@@ -1,12 +1,22 @@
+<html>
 <style>
-      body { height: 600px; width: 800px; margin: 0px; padding: 0px; background-color: black; }
-    </style>
-  <body onload="init()">
-    <center>
-      <canvas id="drawingCanvas" width="800" height="600"></canvas>
-    </center>
-  </body>
-  <script type="text/javascript">
+  body {
+  height: 600px;
+  width: 800px;
+  background-color: black;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  }
+</style>
+<body onload="init()">
+  <center>
+    <canvas id="drawingCanvas" width="800" height="600"></canvas>
+  </center>
+</body>
+<script type="text/javascript">
 var dualities = 
 [
  ["ability","inability"],
@@ -383,4 +393,4 @@ function init()
  animate(0, 13, canvas, context);
 }
 </script>
-
+</html>
