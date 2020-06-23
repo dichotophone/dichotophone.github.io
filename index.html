@@ -1,396 +1,82 @@
 <html>
-<style>
+  <style>
   body {
-  height: 600px;
-  width: 800px;
-  background-color: black;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+    height: 600px;
+    width: 800px;
+    background-color: black;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
-</style>
-<body onload="init()">
-  <center>
-    <canvas id="drawingCanvas" width="800" height="600"></canvas>
-  </center>
-</body>
-<script type="text/javascript">
-var dualities = 
-[
- ["ability","inability"],
- ["abnormal","normal"],
- ["empathy","sympathy"],
- ["absolute","relative"],
- ["abstract","specific"],
- ["acceptable","unacceptable"],
- ["acceptance","rejection"],
- ["acceptance","rejection"],
- ["accurate","careless"],
- ["acknowledgement","refutation"],
- ["active","passive"],
- ["activity","passivity"],
- ["actual","irrelevant"],
- ["adequate","inadequate"],
- ["advancement","retreat"],
- ["affinity","loneliness"],
- ["alarm","calmness"],
- ["all","nothing"],
- ["altruism","egoism"],
- ["always","never"],
- ["analysis","synthesis"],
- ["anxiety","calmness"],
- ["anxiety","peace"],
- ["arrival","leaving"],
- ["attraction","repulsion"],
- ["availability","inaccessibility"],
- ["permission","interdiction"],
- ["subjective","objective"],
- ["teacher","pupil"],
- ["balance","compulsion"],
- ["beauty","ugliness"],
- ["belief","disbelief"],
- ["belief","knowledge"],
- ["better","worse"],
- ["big","small"],
- ["body","mind"],
- ["body","spirit"],
- ["boredom","interest"],
- ["change","effort"],
- ["chaos","order"],
- ["charisma","dullness"],
- ["cheerful","malicious"],
- ["cheerful","tired"],
- ["cheerfulness","gloom"],
- ["city","village"],
- ["completeness","emptiness"],
- ["conclusion","consequence"],
- ["condensation","dissolution"],
- ["confidence","uncertainty"],
- ["consciousness","instincts"],
- ["consciousness","materiality"],
- ["consciousness","unconsciousness"],
- ["consciousness","body"],
- ["constancy","changes"],
- ["constant","rapid"],
- ["contempt","respect"],
- ["control","freedom"],
- ["correct","wrong"],
- ["creation","destruction"],
- ["danger","safety"],
- ["dark","light"],
- ["day","night"],
- ["decent","indecent"],
- ["definiteness","uncertainty"],
- ["dependence","independence"],
- ["deprived","prosperous"],
- ["depth","surface"],
- ["destitute","wealthy"],
- ["dissatisfaction","satisfaction"],
- ["distinction","identification"],
- ["divine","material"],
- ["domination","submission"],
- ["dream","reality"],
- ["dynamics","statics"],
- ["ease","weight"],
- ["economical","prodigal"],
- ["effort","apathy"],
- ["effort","rest"],
- ["emotions","emptiness"],
- ["emotions","judiciousness"],
- ["emotions","reason"],
- ["enthusiasm","apathy"],
- ["eternity","moment"],
- ["everyone","anybody"],
- ["existence","creation"],
- ["existence","non-existence"],
- ["expansion","compression"],
- ["failure","luck"],
- ["far","near"],
- ["fear","boldness"],
- ["fear","rest"],
- ["fire","water"],
- ["firmness","fragility"],
- ["flat","abrupt"],
- ["folding","deployment"],
- ["force","powerlessness"],
- ["force","weakness"],
- ["forever","temporary"],
- ["form","formlessness"],
- ["formation","disappearance"],
- ["fornication","chastity"],
- ["forward","back"],
- ["fragility","eternity"],
- ["freedom","depression"],
- ["freedom","fate/destiny/karma"],
- ["freedom","responsibility"],
- ["freedom","slavery"],
- ["freedom","submission"],
- ["fresh","languid"],
- ["full","empty"],
- ["future","past"],
- ["generous","avaricious"],
- ["genius","madness"],
- ["god","devil"],
- ["good","bad"],
- ["good","evil"],
- ["goodwill","animosities"],
- ["gratitude","ingratitude"],
- ["gravity","levity"],
- ["greatness","pettiness"],
- ["grief","pleasure"],
- ["happiness","grief"],
- ["happiness","sorrow"],
- ["heavy","light"],
- ["hell","paradise"],
- ["here","now"],
- ["here","there"],
- ["high","low"],
- ["hopelessness","hope"],
- ["horizontal","vertical"],
- ["hot","cold"],
- ["humdrum","holiday"],
- ["hunger","satiety"],
- ["ignorant","wise"],
- ["illusion","reality"],
- ["front","behind"],
- ["incompleteness","integrity"],
- ["indifference","enthusiasm"],
- ["indifference","involvement"],
- ["infinitesimal","infinite"],
- ["initiative","inactive"],
- ["inside","outside"],
- ["interest","boredom"],
- ["interest","indifference"],
- ["intuition","consciousness"],
- ["irritation","acceptance"],
- ["judicious","rash"],
- ["knowledge","action"],
- ["knowledge","ignorance"],
- ["left","right"],
- ["life","death"],
- ["light","darkness"],
- ["limitation","infinity"],
- ["literacy","illiteracy"],
- ["logic","creativity"],
- ["logic","emotions"],
- ["long","short"],
- ["love","aggression"],
- ["love","fear"],
- ["love","force/power"],
- ["love","freedom"],
- ["love","hatred"],
- ["love","loneliness"],
- ["love","refusal"],
- ["love","pain"],
- ["lucky","unlucky"],
- ["magnanimous","dishonorable"],
- ["male","female"],
- ["material","emptiness"],
- ["material","non-material"],
- ["material","spiritual"],
- ["merciful","ruthless"],
- ["mind","instincts"],
- ["mine","yours"],
- ["minus","plus"],
- ["mistrust","trust"],
- ["movement","rest"],
- ["movement","immovability"],
- ["movement","stop"],
- ["multitude","uniqueness"],
- ["father","mother"],
- ["mysticism","philistinism"],
- ["nature","civilization"],
- ["near","far"],
- ["negative","positive"],
- ["noble","ignoble"],
- ["nobleness","meanness"],
- ["noise","silence"],
- ["now","afterwards"],
- ["occurrence","disappearance"],
- ["old","young"],
- ["optimism","pessimism"],
- ["panic","calmness"],
- ["part","whole"],
- ["passion","spirituality"],
- ["past","future"],
- ["peace","aggression"],
- ["peace","disorders"],
- ["peace","power"],
- ["perfection","imperfection"],
- ["pleasure","grief"],
- ["point","space"],
- ["positive","negative"],
- ["possible","impossible"],
- ["poverty","riches"],
- ["power","feebleness"],
- ["past","future"],
- ["progress","degradation"],
- ["pure","dirty"],
- ["quickly","slowly"],
- ["reason","emotion"],
- ["reason","consequence"],
- ["reasonable","imprudent"],
- ["reasonable","mad"],
- ["relaxation","tense"],
- ["repetition","variety"],
- ["responsibility","irresponsibility"],
- ["rest","fear"],
- ["rhythmical","spasmodic"],
- ["riches","poverty"],
- ["right","wrong"],
- ["rigidity","softness"],
- ["sacred","sinner"],
- ["safety","insecurity"],
- ["salty","unsalted"],
- ["sane","rash"],
- ["satisfaction","discontent"],
- ["satisfaction","dissatisfaction"],
- ["self-doubt","self-trust"],
- ["shining","dim"],
- ["should","shouldn't"],
- ["shout","silence"],
- ["silently","loud"],
- ["silly","educated"],
- ["small","big"],
- ["something","anything"],
- ["stability","shocks"],
- ["standing","lying"],
- ["structured","unstructured"],
- ["substance","emptiness"],
- ["substance","energy"],
- ["success","defeat"],
- ["success","disappointment"],
- ["successful","unsuccessful"],
- ["sweet","bitter"],
- ["symmetric","asymmetric"],
- ["sympathy","propitiation"],
- ["sympathy","antipathy"],
- ["take-off","falling"],
- ["terrestrial","unearthly"],
- ["theory","practice"],
- ["win","lose"],
- ["tolerance","intolerance"],
- ["top","bottom"],
- ["tragedy","comedy"],
- ["training","knowledge"],
- ["true","hallucinations"],
- ["truth","lie"],
- ["uncertainty","confidence"],
- ["understanding","misunderstanding"],
- ["unity","separately"],
- ["unity","duality"],
- ["unpleasantly","pleasantly"],
- ["vanguard","rearguard"],
- ["victory","defeat"],
- ["victory","loss"],
- ["vigorous","inert"],
- ["vigorous","tired"],
- ["visibility","invisibility"],
- ["vulnerability","invulnerability"],
- ["war","peace"],
- ["way","purpose"],
- ["weightiness","weightlessness"],
- ["white","black"],
- ["wise","stupid"]
-];
-var fsize = 1;
-var growth = 1;
-var factor = 10;
-var g_size_lim = 360/factor;
-var g_x_lim = 1000/factor;
-var canvas = document.getElementById('drawingCanvas');
-var context = canvas.getContext('2d');
+  </style>
+  <body onload="init()">
+    <center>
+      <canvas id="drawingCanvas" width="800" height="600"></canvas>
+    </center>
+  </body>
+  <script type="text/javascript">
+    var fsize = 1;
+    var growth = 1;
+    var factor = 10;
+    var g_size_lim = 360/factor;
+    var g_x_lim = 1000/factor;
+    var canvas = document.getElementById('drawingCanvas');
+    var context = canvas.getContext('2d');
 
-context.translate(canvas.width/2, canvas.height/2);
+    context.translate(canvas.width/2, canvas.height/2);
 
-window.requestAnimFrame = (function(callback) 
-{
- return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
- function(callback) 
- {
-  window.setTimeout(callback, 1000 / 60);
- };
-})();
+    window.requestAnimFrame = (function(callback) {
+      return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+    })();
 
-function writeDuality(duality)
-{
- var point = canvas.width/4;
- var ty = canvas.height/2.3;
- growth++;
- if (growth % 4 == 0) {fsize++;}
-    context.font = '' + fsize + 'pt Courier New';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.strokeStyle = '#808080';
-    context.fillStyle = '#CCCCCC';
-    context.lineWidth = 1;
-    context.strokeText(duality[0],-1*point,ty);
-    context.fillText(duality[0],-1*point,ty);
-    context.fillStyle = '#1C1C1C';
- context.strokeText(duality[1],point,ty);
-    context.fillText(duality[1],point,ty);
- context.lineWidth = 1;
-}
-function removeDualityText()
-{
- context.fillStyle = '#000000';
- context.fillRect(-500, 220, 3000,100);
- context.fillRect(-500, -320, 3000,100);
-}
-function drawDichotophoneText()
-{
- var ty = canvas.height/2.3;
- var df = "dichotophone";
-    context.font = '50pt Times New Roman';
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.strokeStyle = '#F5F5F5';
-    context.fillStyle = '#121212';
-    context.lineWidth = 7;
-    context.strokeText(df,0,ty);
-    context.fillText(df,0,ty);
-}
-function drawCircle(x,y,size)
-{
- context.beginPath();
- context.arc(x,y,size,0,2*Math.PI,false);
- context.strokeStyle = '#FFFFFF';
- context.stroke();
-}
-function animate(k, i, canvas, context) 
-{
- if (i < g_size_lim) 
- {
-  ++i;
- }
- if (i >= g_size_lim)
- {
-  i = 1;
-  ++k;  
- }
- if (k >= 6)
- {
-  removeDualityText();
-  drawDichotophoneText();
-  return;
- }
- context.rotate(Math.PI/i*i)
- drawCircle(g_x_lim-i,2,g_size_lim*k+i);
-  writeDuality(getDuality());
- requestAnimFrame( function() { animate(k, i, canvas, context); } );
-}
-function getDuality()
-{
- var index = Math.floor(Math.random()*10000) % dualities.length;
- return dualities[index];
-}
-function init()
-{
- context.rotate(Math.PI/1)
- drawCircle(999,2,1);  
- animate(0, 13, canvas, context);
-}
-</script>
+    function drawDichotophoneText() {
+      var ty = canvas.height/2.3;
+      var df = "dichotophone";
+      context.font = '50pt Times New Roman';
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.strokeStyle = '#F5F5F5';
+      context.fillStyle = '#121212';
+      context.lineWidth = 7;
+      context.strokeText(df,0,ty);
+      context.fillText(df,0,ty);
+    }
+
+    function drawCircle(x,y,size) {
+      context.beginPath();
+      context.arc(x,y,size,0,2*Math.PI,false);
+      context.strokeStyle = '#FFFFFF';
+      context.stroke();
+    }
+
+    function animate(k, i, canvas, context) {
+      if (i < g_size_lim) {
+        ++i;
+      }
+      if (i >= g_size_lim) {
+        i = 1;
+        ++k;  
+      }
+      
+      if (k >= 6) {
+        drawDichotophoneText();
+        return;
+      }
+
+      context.rotate(Math.PI/i*i);
+      drawCircle(g_x_lim-i,2,g_size_lim*k+i);
+      requestAnimFrame( function() { animate(k, i, canvas, context); } );
+    }
+
+    function init() {
+      context.rotate(Math.PI/1)
+      drawCircle(999,2,1);  
+      animate(0, 13, canvas, context);
+    }
+  </script>
 </html>
